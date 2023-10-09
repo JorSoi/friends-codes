@@ -1,0 +1,40 @@
+@import '../variables';
+@import '../mixins';
+
+.storeDropdown {
+    width: 100%;
+    border: 1.5px solid rgba(255, 255, 255, 0.471);
+    max-height: 200px;
+    position: absolute;
+    top: 45px;
+    z-index: 1;
+    background-color: #454B63;
+    box-shadow: 0px 4.30216px 28px 4px rgba(0, 0, 0, 0.40);
+    overflow-y: scroll;
+    border-radius: 5px;
+
+    .customStore {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        padding: 10px 10px;
+
+
+        &:hover {
+            background-color: $dropdown-hover;
+        }
+
+        .storeIcon {
+            width: 30px;
+            height: 30px;
+            @include flex-c-c;
+            background-color: #676E87;
+            border-radius: 3px;
+        }
+
+        p {
+            margin-left: 10px;
+        }
+    }
+}

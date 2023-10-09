@@ -1,0 +1,116 @@
+@import '../variables';
+@import '../mixins';
+
+.codeEditor {
+    @include layover;
+
+    .editorWrapper {
+        max-width: 500px;
+        width: 100%;
+        margin: 0 3%;
+        @include flex-c-c;
+        flex-direction: column;
+        gap: 15px;
+
+        .cardContainer {
+            background-color: $bg-color-light;
+            padding: 20px;
+            width: 100%;
+
+            .contentWrapper {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+
+                .icon {
+                    width: 55px;
+                    height: 55px;
+                    flex-shrink: 0;
+                    @include flex-c-c;
+                    background-color: #676E87;
+                    border-radius: 6px;
+
+                    img {
+                        max-width: 40%;
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    .codeIcon {
+                        transform: scale(1.25);
+                    }
+                }
+
+                .content {
+                    margin-left: 15px;
+
+                    h2 {
+                        font-size: 18px;
+                        font-weight: 500;
+                        margin-bottom: 5px;
+                    }
+
+                    p {
+                        color: rgba(255, 255, 255, 0.471);
+                    }
+                }
+            }
+
+            .storeInputWrapper {
+                position: relative;
+            }
+
+            .storeInput,
+            .codeInput {
+                width: 100%;
+                padding: 15px;
+                height: 40px;
+                border: 1.5px solid rgba(255, 255, 255, 0.471);
+                background-color: $bg-color-light;
+                outline: none;
+                color: white;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+
+
+        .buttonWrapper {
+            display: flex;
+            justify-content: stretch;
+            gap: 15px;
+            width: 100%;
+            
+            .cta {
+                @include cta;
+                width: 100% !important;
+                @include flex-c-c;
+                img {
+                    margin-right: 10px;
+                }
+            }
+
+            .disabled {
+                opacity: 50%;
+                cursor: not-allowed;
+            }
+
+            .deleteButton {
+                background-color: $bg-color-light;
+                height: 100%;
+                padding: 15px 20px;
+            }
+        }
+    }
+
+    .closeEditor {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+
+        p {
+            margin-left: 10px;
+        }
+    }
+}

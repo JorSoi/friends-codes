@@ -1,0 +1,8 @@
+@import 'variables';
+@import 'mixins';
+
+
+.signIn {
+    @include flex-c-c;
+    height: 100svh;
+}

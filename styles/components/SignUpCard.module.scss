@@ -1,0 +1,82 @@
+@import '../variables';
+@import '../mixins';
+
+.signUpCard {
+    max-width: 400px;
+    width: 100%;
+    @include flex-c-c;
+    flex-direction: column;
+    margin: 0 3%;
+    
+    .logo {
+        font-size: 20px;
+        font-weight: 650;
+        color: white;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .subtitle {
+        color: #585e7d;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    
+    .form {
+        margin-top: 20px;
+
+        input {
+            color: $font-color-dark;
+            @include form-input;
+            color: white;
+            
+        }
+
+        button {
+            @include cta;
+            width: 100%;
+            border: none;
+
+        }
+    }
+
+    .separator {
+        @include flex-sb-c;
+        width: 100%;
+        margin: 20px 0px;
+
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: #2E344E;
+        }
+
+        p {
+            padding: 0px 15px;
+            color: #2E344E;
+            font-size: 19px;
+            font-weight: 450;
+        }
+    }
+
+    .googleButton {
+        @include form-input;
+        background-color: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
+    
+    .googleButton img {
+        margin-right: 10px;
+    }
+    
+    .changeAuth {
+        color: #E601C4;
+    }
+}
+

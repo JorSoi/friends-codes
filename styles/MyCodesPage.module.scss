@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+
+.myCodesPage {
+    padding-top: 90px;
+    height: 100svh;
+    @include flex-c-c;
+    position: relative;
+}
+
+@media (max-width: 700px) {
+    .myCodesPage {
+        padding-top: 60px;
+    }
+}

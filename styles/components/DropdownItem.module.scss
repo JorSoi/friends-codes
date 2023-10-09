@@ -1,0 +1,31 @@
+@import '../variables';
+@import '../mixins';
+
+.dropdownItem {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 10px 10px;
+
+    &:hover {
+        background-color: $dropdown-hover;
+    }
+
+    .storeLogo {
+        width: 30px;
+        height: auto;
+    }
+
+    .storeIcon {
+        width: 30px;
+        height: 30px;
+        @include flex-c-c;
+        background-color: #676E87;
+        border-radius: 3px;
+    }
+
+    p {
+        margin-left: 10px;
+    }
+}

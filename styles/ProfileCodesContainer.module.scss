@@ -1,0 +1,57 @@
+@import 'variables';
+@import 'mixins';
+
+.profileCodesContainer {
+    max-width: 900px;
+    width: 100%;
+    height: 80svh;
+    background-color: $bg-color-medium;
+    margin: 0px 3%;
+    position: relative;
+    overflow: hidden;
+
+    .overflowWrapper {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        overflow-y: scroll;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .shareButton {
+        position: absolute; /* Change absolute to fixed */
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        @include cta;
+    }
+}
+
+@media (max-width: 990px) {
+    .profileCodesContainer {
+        .overflowWrapper {
+            padding: 3%;
+        }
+
+        h1 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .profileCodesContainer {
+        .shareButton {
+            position: absolute;
+            bottom: 2.5%;
+            left: 3%;
+            right: 3%;
+            transform: none;
+        }
+    }
+  }

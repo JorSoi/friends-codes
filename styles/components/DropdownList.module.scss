@@ -1,0 +1,8 @@
+@import '../variables';
+@import '../mixins';
+
+
+.dropdownList {
+    display: flex;
+    flex-direction: column;
+}
