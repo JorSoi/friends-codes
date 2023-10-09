@@ -5,12 +5,16 @@ import Image from 'next/image';
 import SocialIcon from './SocialIcon';
 import { useEffect, useState } from 'react';
 
-function ShareProfile() {
+function ShareProfile({closeShareModal, userData} : {closeShareModal : any, userData : any}) {
 
     const [hasCopied, setHasCopied] = useState<boolean>(false)
 
+    const user = userData.user_metadata.user_name;
+    const env = process.env.NODE_ENV;
+    const userURL = `https://${env == 'development' ? 'localhost:3000' : ''}/${user}`
+
     const handleClose = () => {
-        console.log('hi')
+        closeShareModal();
     }
 
     const copyToClipboard = async () => {
@@ -27,15 +31,15 @@ function ShareProfile() {
                 </div>
                 <p className={styles.label}>Share via</p>
                 <div className={styles.socialWrapper}>
-                    <SocialIcon type={'whatsapp'} />
-                    <SocialIcon type={'twitter'} />
-                    <SocialIcon type={'facebook'} />
-                    <SocialIcon type={'reddit'} />
-                    <SocialIcon type={'telegram'} />
+                    <SocialIcon type={'whatsapp'} userData={userData} userURL={userURL} user={user} />
+                    <SocialIcon type={'twitter'} userData={userData} userURL={userURL} user={user} />
+                    <SocialIcon type={'facebook'} userData={userData} userURL={userURL} user={user} />
+                    <SocialIcon type={'reddit'} userData={userData} userURL={userURL} user={user} />
+                    <SocialIcon type={'telegram'} userData={userData} userURL={userURL} user={user} />
                 </div>
                 <p className={styles.label}>Or copy link</p>
                 <div className={styles.inputWrapper}>
-                    <input type='text' value={`https://referral-codes/jorsoi1303`} />
+                    <input readOnly type='text' value={userURL} />
                     <button onClick={copyToClipboard}>{hasCopied ? 'Copied!' : 'Copy'}</button>
                 </div>
             </div>

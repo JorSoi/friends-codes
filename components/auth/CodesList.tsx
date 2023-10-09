@@ -23,7 +23,7 @@ export default function({codes} : {codes : any}) {
 
     return (
         <div className={styles.codesList}>
-            {codes.map((code : any)=> {
+            {codes?.map((code : any)=> {
                 return(
                     <Suspense key={`${code.id}`} fallback={<p>loading</p>}>
                         <CodeCard key={`${code.id}`} code={code} />
