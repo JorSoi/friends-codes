@@ -1,4 +1,4 @@
-import styles from '@/styles/NavBar.module.scss'
+import styles from '@/styles/components/NavBar.module.scss'
 import Link from 'next/link'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'

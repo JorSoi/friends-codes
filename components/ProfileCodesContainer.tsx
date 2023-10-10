@@ -1,18 +1,17 @@
 'use client'
 
-import styles from '@/styles/ProfileCodesContainer.module.scss'
+import styles from '@/styles/components/ProfileCodesContainer.module.scss'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import CodesList from './auth/CodesList';
-import ShareProfile from './ShareProfile';
+import CodesList from './CodesList';
+import ShareProfile from './modals/ShareProfile';
 import { useEffect, useState } from 'react';
 
-export default function ProfileCodesContainer({user} : {user : any}) {
+export default function ProfileCodesContainer({user, externalVisitor} : {user : any, externalVisitor? : boolean}) {
 
     const [userCodes, setUserCodes] = useState<{}>();
-    const [isShareOpen, setIsShareOpen] = useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const supabase = createClientComponentClient();
-
 
 
     useEffect(() => {
@@ -29,23 +28,31 @@ export default function ProfileCodesContainer({user} : {user : any}) {
     }, [])
 
     const closeShareModal = () => {
-        setIsShareOpen(false)
+        setIsOpen(false)
     }
     
 
     return (
         <div className={styles.profileCodesContainer}>
             <div className={styles.overflowWrapper}>
-                <h1>My referral codes</h1>
+                {!externalVisitor ?
+                    <h1>My referral codes</h1>
+                :
+                    <div className={styles.externalVisitorTitle}>
+                        <h1>{user}'s referral codes 🎁 🎉</h1>
+                        <p>Redeem referral codes below so that you and jorsoi can both collect store benefits.</p>
+                    </div>
+             
+                }
                 <div>
-                    <CodesList codes={userCodes}/>
+                    <CodesList codes={userCodes} externalVisitor={externalVisitor} />
                 </div>
             </div>
                 
-            <button className={styles.shareButton} onClick={() => setIsShareOpen(true)}>
+            {!externalVisitor && <button className={styles.shareButton} onClick={() => setIsOpen(true)}>
                 Share my profile
-            </button>
-            {isShareOpen && <ShareProfile closeShareModal={closeShareModal} userData={user}/>}
+            </button>}
+            {isOpen && <ShareProfile closeShareModal={closeShareModal} userData={user}/>}
         </div>
     );
 }      

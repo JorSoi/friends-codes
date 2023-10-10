@@ -2,6 +2,7 @@
 @import 'mixins';
 
 .myCodesPage {
+    width: 100%;
     padding-top: 90px;
     height: 100svh;
     @include flex-c-c;

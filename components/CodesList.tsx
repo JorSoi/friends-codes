@@ -1,13 +1,13 @@
 'use client'
 
 import styles from '@/styles/components/CodesList.module.scss'
-import CodeCard from '../CodeCard';
-import CodeEditor from '../CodeEditor';
+import CodeCard from './CodeCard';
+import CodeEditor from './modals/CodeEditor';
 import Image from 'next/image';
 import { Suspense, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function({codes} : {codes : any}) {
+export default function({codes, externalVisitor} : {codes : any, externalVisitor?: boolean}) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const router = useRouter();
 
@@ -16,7 +16,7 @@ export default function({codes} : {codes : any}) {
         setIsOpen(true)
     }
  
-    const closeCodeEditor : any= () => {
+    const closeModal : any= () => {
         setIsOpen(false);
         router.refresh();
     }
@@ -26,16 +26,17 @@ export default function({codes} : {codes : any}) {
             {codes?.map((code : any)=> {
                 return(
                     <Suspense key={`${code.id}`} fallback={<p>loading</p>}>
-                        <CodeCard key={`${code.id}`} code={code} />
+                        <CodeCard key={`${code.id}`} code={code} externalVisitor={externalVisitor} />
                     </Suspense>
                 ) 
             })}
-            <div className={styles.addCode} onClick={openCodeEditor}>
+            {!externalVisitor && <div className={styles.addCode} onClick={openCodeEditor}>
                 <button className={styles.addButton}>
                     <Image src={'/add_icon.svg'} width={20} height={20} alt='' />
                 </button> 
             </div>
-            {isOpen && <CodeEditor closeCodeEditor={closeCodeEditor}/>}
+            }
+            {isOpen && !externalVisitor && <CodeEditor closeModal={closeModal}/>}
         </div>
     );
 }

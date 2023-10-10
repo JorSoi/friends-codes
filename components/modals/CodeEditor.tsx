@@ -3,11 +3,11 @@
 import styles from '@/styles/components/CodeEditor.module.scss';
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
-import StoreDropdown from './StoreDropdown';
+import StoreDropdown from '../StoreDropdown';
 import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-function CodeEditor({codeData, handleDelete, closeCodeEditor} : { codeData? : any, handleDelete? : any, closeCodeEditor? : any }) {
+function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, handleDelete? : any, closeModal? : any }) {
 
     const router = useRouter()
     const formRef = useRef<HTMLFormElement | null>(null);
@@ -36,7 +36,7 @@ function CodeEditor({codeData, handleDelete, closeCodeEditor} : { codeData? : an
     }
 
     const handleClose = () => {
-        closeCodeEditor();
+        closeModal();
     }
 
     const handleSubmit = async (e : any) => {
@@ -52,7 +52,7 @@ function CodeEditor({codeData, handleDelete, closeCodeEditor} : { codeData? : an
             if(!error) {
                 console.log('updated successfully');
                 setIsLoading(false)
-                closeCodeEditor();
+                closeModal();
             } else {
                 console.log(error);
             }
@@ -63,7 +63,7 @@ function CodeEditor({codeData, handleDelete, closeCodeEditor} : { codeData? : an
                 const {data, error} = await supabase.from('user_codes').insert({user_id: user.id, company_id: storeId, referral_value: formData.get('referral_code')});
                 if(!error) {
                     setIsLoading(false);
-                    closeCodeEditor();
+                    closeModal();
                 }
             } else if (user && !storeId) {
                 //upon creating a new referral code, the user has chosen an unlisted company which must be created first.
@@ -73,7 +73,7 @@ function CodeEditor({codeData, handleDelete, closeCodeEditor} : { codeData? : an
                     const res = await supabase.from('user_codes').insert({user_id: user.id, company_id: data[0].id, referral_value: formData.get('referral_code')});
 
                     setIsLoading(false)
-                    closeCodeEditor();
+                    closeModal();
                 }
 
 

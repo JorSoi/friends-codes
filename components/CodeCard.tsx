@@ -2,11 +2,12 @@
 
 import styles from '@/styles/components/CodeCard.module.scss'
 import Image from 'next/image';
-import CodeEditor from './CodeEditor';
+import CodeEditor from './modals/CodeEditor';
 import { useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import CodeRedemption from './modals/CodeRedemption';
 
-export default function({code} : {code : any | void}) {
+export default function({code, externalVisitor} : {code : any | void, externalVisitor? : boolean}) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const supabase = createClientComponentClient();
@@ -17,7 +18,7 @@ export default function({code} : {code : any | void}) {
         setIsOpen(true)
     }
 
-    const closeCodeEditor : any= () => {
+    const closeModal : any= () => {
         setIsOpen(false)
     }
 
@@ -45,7 +46,8 @@ export default function({code} : {code : any | void}) {
                 
                 <p>{code.companies.name}</p>
             </div>
-            {isOpen && <CodeEditor codeData={code} handleDelete={handleDelete} closeCodeEditor={closeCodeEditor}/>}
+            {isOpen && !externalVisitor && <CodeEditor codeData={code} handleDelete={handleDelete} closeModal={closeModal}/>}
+            {isOpen && externalVisitor && <CodeRedemption codeData={code} closeModal={closeModal}/>}
         </>
 
 
