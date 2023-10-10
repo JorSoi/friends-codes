@@ -11,7 +11,8 @@ async function page({params : {profileName}} : {params: {profileName : string}})
 
     const supabase = createServerComponentClient({cookies})
 
-    const { data : {id}, error } = await supabase.from('profiles').select('id').eq('user_name', profileName).limit(1).single();
+    const { data , error } = await supabase.from('profiles').select('id').eq('user_name', profileName).limit(1).single();
+    let id = data?.id;
     if(!error) {
         const { data, error } = await supabase.from('user_codes').select(`*, companies(id, name, logo_url)`).eq('user_id', id).order('id', { ascending: false })
         if(!error) {
@@ -21,7 +22,7 @@ async function page({params : {profileName}} : {params: {profileName : string}})
 
     return (
         <div className={styles.profileNamePage}>
-            <ProfileCodesContainer codes={codes} externalVisitor={true} user={profileName}/>
+            <ProfileCodesContainer externalVisitor={true} user={profileName}/>
             <Link href={'/'}>Created with <span>LogoIpsum</span></Link>
         </div>
     );
