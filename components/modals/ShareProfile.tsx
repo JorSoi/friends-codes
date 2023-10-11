@@ -3,13 +3,12 @@
 import styles from '@/styles/components/ShareProfile.module.scss'
 import Image from 'next/image';
 import SocialIcon from '../SocialIcon';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function ShareProfile({closeShareModal, userData} : {closeShareModal : any, userData : any}) {
 
     const [hasCopied, setHasCopied] = useState<boolean>(false)
-
-    const user = userData.user_metadata.user_name;
+    const user = userData?.user_metadata?.user_name;
     const env = process.env.NODE_ENV;
     const userURL = `${env == 'development' ? 'localhost:3000' : 'https://Production URL'}/${user}`
 

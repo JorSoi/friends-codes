@@ -5,7 +5,6 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import DropdownList from './DropDownList';
-import { v4 as uuidv4 } from 'uuid';
 
 function StoreDropdown({searchValue, selectStore} : {searchValue : string, selectStore : any}) {
 

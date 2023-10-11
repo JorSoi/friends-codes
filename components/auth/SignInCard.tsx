@@ -38,7 +38,7 @@ function SignInCard() {
               if(!error) {
                 router.push('/my-codes')
               } else {
-                alert(`Login unsuccessfull ${error}`)
+                alert(`Login unsuccessfull`)
               }
               
         },

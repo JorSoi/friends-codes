@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 
 async function page() {
 
+    cookies().getAll(); // Keep cookies in the JS execution context for Next.js build
 
     const supabase = createServerComponentClient({cookies});
 

@@ -50,7 +50,6 @@ function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, ha
             //updating existing referral code in case codeData was passed to this component
             const {data, error} = await supabase.from('user_codes').update({referral_value: formData.get('referral_code')}).eq('id', codeData.id)
             if(!error) {
-                console.log('updated successfully');
                 setIsLoading(false)
                 closeModal();
             } else {

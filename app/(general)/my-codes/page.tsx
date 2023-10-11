@@ -1,15 +1,33 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+'use client'
+
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import styles from '@/styles/MyCodesPage.module.scss'
 import ProfileCodesContainer from "@/components/ProfileCodesContainer";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 
-async function page() {
+
+function page() {
+    const [user, setUser] = useState({})
+    const supabase = createClientComponentClient();
+    const router = useRouter()
+
+    useEffect(() => {
+        const getUserData = async () => {
+            const {data : { user }, error} = await supabase.auth.getUser();
+            if (!user) {
+                router.push('/auth/signIn')
+            } else {
+                setUser(user)
+            }
+        }
+
+        getUserData();
+    }, [])
 
 
-    const supabase = createServerComponentClient({cookies});
 
-    const {data : { user }, error} = await supabase.auth.getUser();
 
     return (
         <div className={styles.myCodesPage}>

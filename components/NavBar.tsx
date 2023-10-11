@@ -4,10 +4,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
 
-export const dynamic = 'force-dynamic'
-
 export default async function NavBar () {
 
+    cookies().getAll(); // Keep cookies in the JS execution context for Next.js build
     const supabase = createServerComponentClient({cookies})
 
     const { data : { user }, error } = await supabase.auth.getUser();

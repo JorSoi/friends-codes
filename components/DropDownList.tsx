@@ -3,8 +3,6 @@ import DropdownItem from "./DropdownItem";
 
 function DropdownList({storeList, selectStore} : {storeList : any, selectStore : any}) {
 
-
-
     return (
         <div className={styles.dropdownList}>
             {
