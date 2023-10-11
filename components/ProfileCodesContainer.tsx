@@ -6,6 +6,8 @@ import CodesList from './CodesList';
 import ShareProfile from './modals/ShareProfile';
 import { useEffect, useState } from 'react';
 
+export const dynamic = 'force-dynamic'
+
 export default function ProfileCodesContainer({user, externalVisitor} : {user : any, externalVisitor? : boolean}) {
 
     const [userCodes, setUserCodes] = useState<{}>();

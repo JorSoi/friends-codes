@@ -1,18 +1,32 @@
+'use client'
+
 import styles from '@/styles/components/NavBar.module.scss'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import { useEffect, useState } from 'react'
 
+// export const dynamic = 'force-dynamic'
 
-export default async function NavBar () {
+export default function NavBar () {
 
-    cookies().getAll(); // Keep cookies in the JS execution context for Next.js build
-    const supabase = createServerComponentClient({cookies})
+    const [user, setUser] = useState<boolean>(false);
 
-    const { data : { user }, error } = await supabase.auth.getUser();
+    const supabase = createClientComponentClient();
+    
+useEffect(() => {
+    const getUserData = async () => {
+        const { data : { user }, error } = await supabase.auth.getUser();
+    if(user) {
+        console.log(user)
+        setUser(true)
+    } else {
+        console.log('no user')
+    }
+    }
+    getUserData();
+}, [])
 
-
-
+    
     return (
         <nav className={styles.nav}>
             <div className={styles.navWrapper}>
@@ -29,12 +43,8 @@ export default async function NavBar () {
                         </>
                         :
                         <Link className={styles.signOut} href={'/auth/signOut'}>Sign Out</Link>
-                    }
-                   
+                    }    
                 </div>                   
-                
-
-
             </div>
         </nav>
     )

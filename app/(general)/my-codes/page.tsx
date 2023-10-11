@@ -5,6 +5,7 @@ import styles from '@/styles/MyCodesPage.module.scss'
 import ProfileCodesContainer from "@/components/ProfileCodesContainer";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import NavBar from "@/components/NavBar";
 
 
 
@@ -31,6 +32,7 @@ function page() {
 
     return (
         <div className={styles.myCodesPage}>
+            <NavBar />
             <ProfileCodesContainer user={user}/>
         </div>
     );

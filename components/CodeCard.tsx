@@ -6,11 +6,16 @@ import CodeEditor from './modals/CodeEditor';
 import { useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import CodeRedemption from './modals/CodeRedemption';
+import { useRouter } from 'next/navigation';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default function({code, externalVisitor} : {code : any | void, externalVisitor? : boolean}) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const supabase = createClientComponentClient();
+    const router = useRouter();
 
 
 
@@ -28,6 +33,7 @@ export default function({code, externalVisitor} : {code : any | void, externalVi
         const {data, error} = await supabase.from('user_codes').delete().eq('id', `${id}`)
         if(!error) {
             setIsOpen(false)
+            router.refresh();
         } else {
             console.log(error)
         }

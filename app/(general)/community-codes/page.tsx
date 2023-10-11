@@ -1,3 +1,4 @@
+import NavBar from "@/components/NavBar";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -12,6 +13,7 @@ async function page() {
 
     return (
         <div>
+            <NavBar />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <h1>Community Page</h1>
             {data.user ? `welcome back ${data.user.user_metadata.user_name}` : 'you are not signed in. Please sign up first to see content.'}
