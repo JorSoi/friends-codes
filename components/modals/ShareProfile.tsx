@@ -10,7 +10,7 @@ function ShareProfile({closeShareModal, userData} : {closeShareModal : any, user
     const [hasCopied, setHasCopied] = useState<boolean>(false)
     const user = userData?.user_metadata?.user_name;
     const env = process.env.NODE_ENV;
-    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://referral-codes-25fgdqfzy-jorsoi.vercel.app/'}/${user}`
+    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://referral-codes-25fgdqfzy-jorsoi.vercel.app'}/${user}`
 
     const handleClose = () => {
         closeShareModal();
