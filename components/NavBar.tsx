@@ -12,6 +12,11 @@ export default function NavBar () {
     const [user, setUser] = useState<boolean>(false);
 
     const supabase = createClientComponentClient();
+
+    const handleSignOut = async () : Promise<void> => {
+        const {error} = await supabase.auth.signOut();
+        console.log(error)
+    }
     
 useEffect(() => {
     const getUserData = async () => {
@@ -42,7 +47,7 @@ useEffect(() => {
                             <Link className={styles.signUp} href={'/auth/signUp'}>Sign Up</Link>
                         </>
                         :
-                        <Link className={styles.signOut} href={'/auth/signOut'}>Sign Out</Link>
+                        <Link className={styles.signOut} href={'/'} onClick={handleSignOut}>Sign Out</Link>
                     }    
                 </div>                   
             </div>
