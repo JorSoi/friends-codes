@@ -4,10 +4,28 @@ import styles from '@/styles/Home.module.scss'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link';
 import NavBar from '@/components/NavBar';
+import { useEffect, useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function Home() {
-const searchParams = useSearchParams();
-let pageVisitor : any = searchParams.get('visitor')
+
+  const searchParams = useSearchParams();
+  const [pageVisitor, setPageVisitor] = useState<string | null>()
+  const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    async function getUser () : Promise<void> {
+      const {data : {user}, error} = await supabase.auth.getUser();
+      if(!error) {
+        setPageVisitor(user?.user_metadata.user_name);
+        console.log(user)
+      } else {
+        setPageVisitor(searchParams.get('visitor'))
+      }
+    }
+
+    getUser();
+  })
 
 
   return (
