@@ -11,12 +11,10 @@ import { useRouter } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default function({code, externalVisitor} : {code : any | void, externalVisitor? : boolean}) {
+export default function({code, externalVisitor, refreshUserCodes} : {code : any | void, externalVisitor? : boolean, refreshUserCodes : any}) {
+
     const [isOpen, setIsOpen] = useState<boolean>(false)
-
     const supabase = createClientComponentClient();
-    const router = useRouter();
-
 
 
     const openCodeEditor = () => {
@@ -27,13 +25,11 @@ export default function({code, externalVisitor} : {code : any | void, externalVi
         setIsOpen(false)
     }
 
-    
-
     const handleDelete : any = async (id : string) => {
         const {data, error} = await supabase.from('user_codes').delete().eq('id', `${id}`)
         if(!error) {
+            refreshUserCodes();
             setIsOpen(false)
-            router.refresh();
         } else {
             console.log(error)
         }

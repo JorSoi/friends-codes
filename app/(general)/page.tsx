@@ -18,7 +18,6 @@ export default function Home() {
       const {data : {user}, error} = await supabase.auth.getUser();
       if(!error) {
         setPageVisitor(user?.user_metadata.user_name);
-        console.log(user)
       } else {
         setPageVisitor(searchParams.get('visitor'))
       }

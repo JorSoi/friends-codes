@@ -10,24 +10,8 @@ export const dynamic = 'force-dynamic'
 
 export default function ProfileCodesContainer({user, externalVisitor} : {user : any, externalVisitor? : boolean}) {
 
-    const [userCodes, setUserCodes] = useState<{}>();
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    const supabase = createClientComponentClient();
-
-
-    useEffect(() => {
-
-        const getUserCodes = async () => {
-            const { data, error } = await supabase.from('user_codes').select(`*, companies(id, name, logo_url)`).order('id', { ascending: false })
-            if(!error) {
-                setUserCodes(data);
-            }
-        }
-        
-        getUserCodes();
-    
-    }, [])
 
     const closeShareModal = () => {
         setIsOpen(false)
@@ -47,7 +31,7 @@ export default function ProfileCodesContainer({user, externalVisitor} : {user : 
              
                 }
                 <div>
-                    <CodesList codes={userCodes} externalVisitor={externalVisitor} />
+                    <CodesList externalVisitor={externalVisitor} />
                 </div>
             </div>
                 

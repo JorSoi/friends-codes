@@ -7,7 +7,7 @@ import StoreDropdown from '../StoreDropdown';
 import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, handleDelete? : any, closeModal? : any }) {
+function CodeEditor({codeData, handleDelete, closeModal, refreshUserCodes} : { codeData? : any, handleDelete? : any, closeModal? : any, refreshUserCodes? : any }) {
 
     const router = useRouter()
     const formRef = useRef<HTMLFormElement | null>(null);
@@ -17,7 +17,7 @@ function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, ha
     const [code, setCode] = useState<string>(codeData ? codeData.referral_value : '')
     const [isStoreInputFocused, setIsStoreInputFocused] = useState(false)
     const [isDisabled, setIsDisabled] = useState(true)
-    const [storeLogo, setStoreLogo] = useState<string | undefined>('/store_icon.svg')
+    const [storeLogo, setStoreLogo] = useState<string | undefined>(codeData ? codeData.companies.logo_url : '/store_icon.svg')
     const [storeId, setStoreId] = useState<string | undefined>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -32,7 +32,6 @@ function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, ha
 
     const handleDeleteClick = () => {
         handleDelete(codeData.id)
-        router.refresh()
     }
 
     const handleClose = () => {
@@ -61,6 +60,7 @@ function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, ha
             if(user && storeId) {
                 const {data, error} = await supabase.from('user_codes').insert({user_id: user.id, company_id: storeId, referral_value: formData.get('referral_code')});
                 if(!error) {
+                    refreshUserCodes();
                     setIsLoading(false);
                     closeModal();
                 }
@@ -68,9 +68,8 @@ function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, ha
                 //upon creating a new referral code, the user has chosen an unlisted company which must be created first.
                 const {data, error} = await supabase.from('companies').insert({name: store}).select();
                 if (!error) {
-                    console.log(data)
                     const res = await supabase.from('user_codes').insert({user_id: user.id, company_id: data[0].id, referral_value: formData.get('referral_code')});
-
+                    refreshUserCodes();
                     setIsLoading(false)
                     closeModal();
                 }
@@ -137,16 +136,20 @@ function CodeEditor({codeData, handleDelete, closeModal} : { codeData? : any, ha
                 <div className={styles.cardContainer}>
                     <div className={styles.contentWrapper}>
                         <div className={styles.icon}>
-                            <Image className={styles.codeIcon} src={'/code_icon.svg'} width={20} height={20} alt='' />
+                            {codeData ? 
+                                <Image src={storeLogo ? storeLogo : '/store_icon.svg'} width={20} height={20} alt='' />
+                            :
+                                <Image className={styles.codeIcon} src={'/code_icon.svg'} width={20} height={20} alt='' />
+                            }
                         </div>
                         <div className={styles.content}>
                             <h2>{codeData ? 'Update' : 'Insert'}  Referral Code/Link</h2>
-                            <p>Type your referral link/code {codeData ? `for ${store}` : null} here.</p>
+                            <p>Type your referral link/code {codeData ? `for "${store}"` : null} here.</p>
                         </div>
                     </div>
                     <input 
                         name='referral_code'
-                        placeholder={code ? '' : 'e.g. https://share.amazon.com/jorsoi13'} 
+                        placeholder={code ? '' : 'e.g. https://share.amazon.com/user_name'} 
                         className={styles.codeInput} 
                         value={code} 
                         onChange={handleCodeChange}

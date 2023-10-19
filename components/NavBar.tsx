@@ -3,7 +3,7 @@
 import styles from '@/styles/components/NavBar.module.scss'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 // export const dynamic = 'force-dynamic'
@@ -12,6 +12,7 @@ export default function NavBar () {
 
     const [user, setUser] = useState<boolean>(false);
     const router = useRouter();
+    const pathName = usePathname();
 
     const supabase = createClientComponentClient();
 
@@ -19,7 +20,9 @@ export default function NavBar () {
         const {error} = await supabase.auth.signOut();
         if(!error) {
             setUser(false);
-            router.refresh();
+            if (pathName == '/') {
+                router.refresh();
+            }
         }
         
     }
@@ -28,14 +31,13 @@ useEffect(() => {
     const getUserData = async () => {
         const { data : { user }, error } = await supabase.auth.getUser();
     if(user) {
-        console.log(user)
         setUser(true)
     } else {
         console.log('no user')
     }
     }
     getUserData();
-}, [user])
+}, [])
 
     
     return (
