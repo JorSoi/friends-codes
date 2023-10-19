@@ -32,15 +32,14 @@ export default function Home() {
       <NavBar />
       <div className={styles.heroWrapper}>
         <p className={styles.welcomeText}>Hey {pageVisitor ? pageVisitor : 'there stranger'}! 👋</p>
-        <h1>Enter your referral codes, 
-we help to get them redeemed!</h1>
+        <h1>Share your referral codes to get them redeemed by friends and family!</h1>
         <p className={styles.subheading}>
-        LogoIpsum is the simplest and fastest place to share and redeem referral codes with your friends and the world. Collect all the benefits from using or sharing codes from many companies worldwide.
+        ReferralCodes is the simplest and fastest place to share and redeem referral codes with your friends. Simply add codes and links to your profile and link it in any of your social-media bios.
         </p>
 
         <div className={styles.buttonWrapper}>
           <Link href={'/my-codes'} className={styles.profileCTA}>Add your first referral code</Link>
-          <Link href={'/community-codes'} className={styles.communityCTA}>Find other referral codes</Link>
+          {/* <Link href={'/community-codes'} className={styles.communityCTA}>Find other referral codes</Link> */}
         </div>
       </div>
     </main>

@@ -5,12 +5,11 @@ import Image from 'next/image';
 import SocialIcon from '../SocialIcon';
 import { useState } from 'react';
 
-function ShareProfile({closeShareModal, userData} : {closeShareModal : any, userData : any}) {
+function ShareProfile({closeShareModal, user} : {closeShareModal : any, user : any}) {
 
     const [hasCopied, setHasCopied] = useState<boolean>(false)
-    const user = userData?.user_metadata?.user_name;
     const env = process.env.NODE_ENV;
-    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://referral-codes.vercel.app'}/${user}`
+    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://referral-codes.vercel.app'}/${user.user_name}`
 
     const handleClose = () => {
         closeShareModal();

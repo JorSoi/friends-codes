@@ -20,7 +20,7 @@ function page() {
             if (!user) {
                 router.push('/auth/signIn')
             } else {
-                setUser(user)
+                setUser({id: user.id, user_name: user.user_metadata.user_name, avatar_url: user.user_metadata.avatar_url})
             }
         }
 

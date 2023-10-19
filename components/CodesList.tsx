@@ -7,14 +7,15 @@ import Image from 'next/image';
 import { Suspense, useState, useEffect } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-export default function({externalVisitor} : {externalVisitor?: boolean}) {
+export default function({externalVisitor, user} : {externalVisitor?: boolean, user : any}) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [userCodes, setUserCodes] = useState<{}[] | null>([]);
     const supabase = createClientComponentClient();
 
+
     const getUserCodes = async () => {
-        const { data, error } = await supabase.from('user_codes').select(`*, companies(id, name, logo_url)`).order('id', { ascending: false })
+        const { data, error } = await supabase.from('user_codes').select(`*, companies(id, name, logo_url)`).eq('user_id', user.id).order('id', { ascending: false })
         if(!error) {
             setUserCodes(data);
         }
@@ -34,7 +35,7 @@ export default function({externalVisitor} : {externalVisitor?: boolean}) {
 
     useEffect(() => {
         getUserCodes();
-    }, [])
+    }, [user])
 
     return (
         <div className={styles.codesList}>

@@ -43,11 +43,11 @@ useEffect(() => {
     return (
         <nav className={styles.nav}>
             <div className={styles.navWrapper}>
-                <Link href={'/'} className={styles.logo}>LogoIpsum</Link>
-                <div className={styles.linkWrapper}>
+                <Link href={'/'} className={styles.logo}>ReferralCodes</Link>
+                {/* <div className={styles.linkWrapper}>
                     <Link href={'/community-codes'}>Community Codes</Link>
                     <Link href={'/my-codes'}>My Codes</Link>
-                </div>           
+                </div>            */}
                 <div className={styles.authWrapper}>
                     {!user ?
                         <>

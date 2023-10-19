@@ -25,20 +25,20 @@ export default function ProfileCodesContainer({user, externalVisitor} : {user : 
                     <h1>My referral codes</h1>
                 :
                     <div className={styles.externalVisitorTitle}>
-                        <h1>{user}'s referral codes 🎁 🎉</h1>
+                        <h1>{user?.user_name}'s referral codes 🎁 🎉</h1>
                         <p>Redeem referral codes below so that you and jorsoi can both collect store benefits.</p>
                     </div>
              
                 }
                 <div>
-                    <CodesList externalVisitor={externalVisitor} />
+                    <CodesList externalVisitor={externalVisitor} user={user} />
                 </div>
             </div>
                 
             {!externalVisitor && <button className={styles.shareButton} onClick={() => setIsOpen(true)}>
                 Share my profile
             </button>}
-            {isOpen && <ShareProfile closeShareModal={closeShareModal} userData={user}/>}
+            {isOpen && <ShareProfile closeShareModal={closeShareModal} user={user}/>}
         </div>
     );
 }      
