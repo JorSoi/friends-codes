@@ -41,6 +41,20 @@
             border: none;
 
         }
+
+        .userNameInput {
+            margin-bottom: 0px;
+        }
+
+        .userNameWrapper {
+            margin-bottom: 20px;
+
+            .userNameWarning {
+                color: red;
+                margin-top: 5px;
+                font-size: 15px;
+            }
+        }
     }
 
     .separator {

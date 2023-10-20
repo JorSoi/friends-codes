@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
+import * as Yup from 'yup';
 
 function SignUpCard() {
 
@@ -23,6 +24,9 @@ function SignUpCard() {
             email: '',
             password: '',
         }, 
+        validationSchema: Yup.object({
+            userName: Yup.string().matches(/^\S*$/, 'Your user name cannot contain spaces')
+        }),
         onSubmit: async () => {
             const {data, error} = await supabase.auth.signUp({
                 email: formik.values.email,
@@ -46,11 +50,15 @@ function SignUpCard() {
 
     return (
         <div className={styles.signUpCard}>
-                <Link className={styles.logo} href={'/'}>LogoIpsum</Link>
-                <h1>Hi 👋, let’s get started.</h1>
-                <p className={styles.subtitle}>Find and share your first referral codes. We make sure that they find the right person to redeem them!</p>
+            <Link className={styles.logo} href={'/'}>LogoIpsum</Link>
+            <h1>Hi 👋, let’s get started.</h1>
+            <p className={styles.subtitle}>Find and share your first referral codes. We make sure that they find the right person to redeem them!</p>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
-                <input type="text" name="userName" onChange={formik.handleChange} value={formik.values.userName} placeholder='User Name*' minLength={3} required/>
+                <div className={styles.userNameWrapper}>
+                    <input className={styles.userNameInput} type="text" name="userName" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.userName} placeholder='User Name*' minLength={3} required/>
+                    {formik.errors.userName ? <p className={styles.userNameWarning} >{formik.errors.userName}</p> : null}
+                </div>
+                
                 <input type="email" name="email" onChange={formik.handleChange} value={formik.values.email} placeholder='Email*'  required/>
                 <input type="password" name="password" onChange={formik.handleChange} value={formik.values.password} placeholder='Password*' required minLength={6}/>
                 <button type="submit">Sign Up</button>

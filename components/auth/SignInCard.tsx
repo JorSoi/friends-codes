@@ -7,10 +7,12 @@ import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation' 
+import Toast from '../Toast';
 
 function SignInCard() {
 
     const [isAuthed, setIsAuthed] = useState(false)
+    const [issue, setIssue] = useState(false)
 
     const router = useRouter();
     const supabase = createClientComponentClient();
@@ -38,7 +40,9 @@ function SignInCard() {
               if(!error) {
                 router.push('/my-codes')
               } else {
-                alert(`Login unsuccessfull`)
+                setIssue((prev) => {
+                    return !prev
+                })
               }
               
         },
@@ -63,6 +67,7 @@ function SignInCard() {
                 Sign In with Google
             </button> */}
             <Link className={styles.changeAuth} href={'/auth/signUp'}>I don’t have an account yet</Link>
+            {issue && <Toast type='issue' message='Login was unsuccessfull' />}
         </div> 
     );
 }
