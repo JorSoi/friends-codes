@@ -1,0 +1,61 @@
+@import '../variables';
+@import '../mixins';
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 20px;
+    font-weight: 500;
+    border-radius: 4px;
+    position: fixed;
+    z-index: 9999;
+    bottom: -50px;
+    left: auto;
+    right: auto;
+    overflow: hidden;
+    transition: all 0.5s;
+
+    .timelineWrapper {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 4px;
+
+        .timeline {
+            height: 100%;
+            transition-property: width;
+            transition-duration: 5s;
+            transition-timing-function: linear;
+        }
+    }
+}
+
+.issue {
+    background-color: #FFE4E2;
+    color: #E7332A;
+}
+
+.warning {
+    background-color: #FFF0D9;
+    color: #FF9700;
+}
+
+.success {
+    background-color: #E0FFE7;
+    color: #00A521;
+}
+
+.timeline-issue {
+    background-color:#E7332A;
+}
+
+.timeline-warning {
+    background-color: #FF9700;
+}
+
+.timeline-success {
+    background-color: #00A521;
+}

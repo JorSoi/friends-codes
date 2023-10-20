@@ -13,8 +13,8 @@ function SignUpCard() {
     const supabase = createClientComponentClient();
 
 
-    const handleGoogleSignIn = () => {
-        alert('Google Sign Up')
+    const handleGoogleSignUp = () => {
+        supabase.auth.signInWithOAuth({provider: 'google'});
     }
 
     const formik = useFormik({
@@ -55,15 +55,15 @@ function SignUpCard() {
                 <input type="password" name="password" onChange={formik.handleChange} value={formik.values.password} placeholder='Password*' required minLength={6}/>
                 <button type="submit">Sign Up</button>
             </form>
-            <div className={styles.separator}>
+            {/* <div className={styles.separator}>
                 <div className={styles.line}></div>
                 <p>or</p>
                 <div className={styles.line}></div>
             </div>
-            <button className={styles.googleButton} onClick={handleGoogleSignIn} type='button'>
+            <button className={styles.googleButton} onClick={handleGoogleSignUp} type='button'>
             <Image src='https://authjs.dev/img/providers/google.svg' width={20} height={20} alt=''/>
                 Sign Up with Google
-            </button>
+            </button> */}
             <Link className={styles.changeAuth} href={'/auth/signIn'}>I have an account</Link>
         </div> 
     );

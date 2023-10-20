@@ -53,7 +53,7 @@ function SignInCard() {
                 <input type="password" name="password" onChange={formik.handleChange} value={formik.values.password} placeholder='Password*'required/>
                 <button type="submit">Sign In</button>
             </form>
-            <div className={styles.separator}>
+            {/* <div className={styles.separator}>
                 <div className={styles.line}></div>
                 <p>or</p>
                 <div className={styles.line}></div>
@@ -61,7 +61,7 @@ function SignInCard() {
             <button className={styles.googleButton} onClick={handleGoogleSignIn} type='button'>
             <Image src='https://authjs.dev/img/providers/google.svg' width={20} height={20} alt=''/>
                 Sign In with Google
-            </button>
+            </button> */}
             <Link className={styles.changeAuth} href={'/auth/signUp'}>I don’t have an account yet</Link>
         </div> 
     );
