@@ -3,8 +3,15 @@
 import ProfileCodesContainer from "@/components/ProfileCodesContainer";
 import styles from '@/styles/ProfileName.module.scss'
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Metadata } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+export async function generateMetaData ({params} : {params : any}) : Promise<Metadata> {
+    return {
+        title: `Referral Codes from ${params.profileName}`,
+      }
+}
 
 function page({params : {profileName}} : {params: {profileName : string}}) {
 
