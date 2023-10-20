@@ -34,7 +34,7 @@ export default function Home() {
         <p className={styles.welcomeText}>Hey {pageVisitor ? pageVisitor : 'there stranger'}! 👋</p>
         <h1>Share your referral codes to get them redeemed by friends and family!</h1>
         <p className={styles.subheading}>
-        ReferralCodes is the simplest and fastest place to share and redeem referral codes with your friends. Simply add codes and links to your profile and link it in any of your social-media bios.
+        FriendsCodes is the simplest and fastest place to share and redeem referral codes with your friends. Simply add codes and links to your profile and link it in any of your social-media bios.
         </p>
 
         <div className={styles.buttonWrapper}>
