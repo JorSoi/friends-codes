@@ -7,12 +7,12 @@ import Link from "next/link";
 export async function generateMetadata({ params : {profileName} } : {params : {profileName: any}}) {
     return {
         title: `Referral Codes from ${profileName}`,
-        description: `Help ${profileName} to collect referral boni by redeeming his codes/links on his ReferralCodes-Dashboard`,
+        description: `Help ${profileName} to collect referral boni by redeeming his codes/links on his FriendsCodes profile`,
         openGraph: {
             title: `Referral Codes from ${profileName}`,
             description: `Help ${profileName} to collect referral boni by redeeming his codes or links on their FriendsCodes profile`,
-            url: `https://referral-codes.vercel.app/${profileName}`,
-            siteName: 'ReferralCodes',
+            url: `https://friendscodes.de/${profileName}`,
+            siteName: 'FriendsCodes',
             type: 'website',
           },
     }

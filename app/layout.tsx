@@ -16,12 +16,26 @@ export async function generateMetadata () {
   if(user) {
     return {
       title: 'My FriendsCodes',
-      description: 'Share and redeem referral codes all over the world',
+      description: 'FriendsCodes is the simplest and fastest place to share and redeem referral codes with your friends and family. Simply add codes and links to your profile and collect store-benefits from hundreds of companies worldwide!',
+      openGraph: {
+        title: `FriendsCodes`,
+        description: 'FriendsCodes is the simplest and fastest place to share and redeem referral codes with your friends and family. Simply add codes and links to your profile and collect store-benefits from hundreds of companies worldwide!',
+        url: `https://friendscodes.de`,
+        siteName: 'FriendsCodes',
+        type: 'website',
+      },
     }
   } else {
     return {
       title: 'FriendsCodes',
       description: 'Share and redeem referral codes all over the world',
+      openGraph: {
+        title: `FriendsCodes`,
+        description: 'FriendsCodes is the simplest and fastest place to share and redeem referral codes with your friends and family. Simply add codes and links to your profile and collect store-benefits from hundreds of companies worldwide!',
+        url: `https://friendscodes.de`,
+        siteName: 'FriendsCodes',
+        type: 'website',
+      },
     }
   }
 }
