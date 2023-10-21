@@ -9,7 +9,7 @@ function ShareProfile({closeShareModal, user} : {closeShareModal : any, user : a
 
     const [hasCopied, setHasCopied] = useState<boolean>(false)
     const env = process.env.NODE_ENV;
-    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://referral-codes.vercel.app'}/${user.user_name}`
+    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://www.friendscodes.de'}/${user.user_name}`
 
     const handleClose = () => {
         closeShareModal();
@@ -25,7 +25,7 @@ function ShareProfile({closeShareModal, user} : {closeShareModal : any, user : a
             <div className={styles.modal}>
                 <div className={styles.titleWrapper}>
                     <h2>Share your referral codes! 🌍 🎉</h2>
-                    <p>Add your profile-link to your social bio to remind your friends of your referral codes!</p>
+                    <p>Add your profile-link to your social bios to remind your friends of your referral codes!</p>
                 </div>
                 <p className={styles.label}>Share via</p>
                 <div className={styles.socialWrapper}>
