@@ -9,7 +9,8 @@ import { cookies } from 'next/headers'
 const inter = Inter({ subsets: ['latin'] })
 
 export async function generateMetadata () {
-
+  cookies().getAll();
+  
   const supabase = createServerComponentClient({cookies});
   const {data: {user}, error} = await supabase.auth.getUser();
   if(user) {

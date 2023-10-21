@@ -1,7 +1,5 @@
-import NavBar from '@/components/NavBar'
 import '@/styles/globals.scss'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
 
