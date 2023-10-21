@@ -9,7 +9,7 @@ function ShareProfile({closeShareModal, user} : {closeShareModal : any, user : a
 
     const [hasCopied, setHasCopied] = useState<boolean>(false)
     const env = process.env.NODE_ENV;
-    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://www.friendscodes.de'}/${user.user_name}`
+    const userURL = `${env == 'development' ? 'localhost:3000' : 'https://friendscodes.de'}/${user.user_name}`
 
     const handleClose = () => {
         closeShareModal();

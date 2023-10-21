@@ -126,6 +126,7 @@ function CodeEditor({codeData, handleDelete, closeModal, refreshUserCodes} : { c
                             value={store} 
                             onChange={handleStoreChange} 
                             onFocus={() => setIsStoreInputFocused(true)} 
+                            onBlur={() => setTimeout(() => setIsStoreInputFocused(false), 100)} 
                         />
                         {isStoreInputFocused && <StoreDropdown searchValue={store} selectStore={selectStore}/>}
                     </div>
