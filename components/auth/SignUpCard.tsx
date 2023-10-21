@@ -50,7 +50,7 @@ function SignUpCard() {
 
     return (
         <div className={styles.signUpCard}>
-            <Link className={styles.logo} href={'/'}>LogoIpsum</Link>
+            <Link className={styles.logo} href={'/'}>FriendsCodes</Link>
             <h1>Hi 👋, let’s get started.</h1>
             <p className={styles.subtitle}>Find and share your first referral codes. We make sure that they find the right person to redeem them!</p>
             <form className={styles.form} onSubmit={formik.handleSubmit}>

@@ -11,6 +11,7 @@ export default function Home() {
 
   const searchParams = useSearchParams();
   const [pageVisitor, setPageVisitor] = useState<string | null>()
+  const [isAuthed, setIsAuthed] = useState<boolean>(false);
   const supabase = createClientComponentClient();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function Home() {
       const {data : {user}, error} = await supabase.auth.getUser();
       if(!error) {
         setPageVisitor(user?.user_metadata.user_name);
+        setIsAuthed(true)
       } else {
         setPageVisitor(searchParams.get('visitor'))
       }
@@ -38,7 +40,7 @@ export default function Home() {
         </p>
 
         <div className={styles.buttonWrapper}>
-          <Link href={'/my-codes'} className={styles.profileCTA}>Add your first referral code</Link>
+          <Link href={'/my-codes'} className={styles.profileCTA}>{isAuthed ? 'Go to my referral codes' : 'Add your first referral code'}</Link>
           {/* <Link href={'/community-codes'} className={styles.communityCTA}>Find other referral codes</Link> */}
         </div>
       </div>

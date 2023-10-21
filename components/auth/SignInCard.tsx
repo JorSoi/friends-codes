@@ -50,7 +50,7 @@ function SignInCard() {
 
     return (
         <div className={styles.signInCard}>
-                <Link className={styles.logo} href={'/'}>LogoIpsum</Link>
+                <Link className={styles.logo} href={'/'}>FriendsCodes</Link>
                 <h1>Welcome back 👋</h1>
             <form className={styles.form} onSubmit={formik.handleSubmit}>
                 <input type="email" name="email" onChange={formik.handleChange} value={formik.values.email} placeholder='Email*' autoComplete='off'required/>

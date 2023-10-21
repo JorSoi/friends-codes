@@ -111,7 +111,7 @@ function CodeEditor({codeData, handleDelete, closeModal, refreshUserCodes} : { c
                     <div className={styles.cardContainer}>
                     <div className={styles.contentWrapper}>
                         <div className={styles.icon}>
-                            <Image src={storeLogo ? storeLogo : '/store_icon.svg'} width={20} height={20} alt='' />
+                            <Image className={storeLogo != '/store_icon.svg' ? styles.storeLogoImage : styles.defaultIconImage} src={storeLogo ? storeLogo : '/store_icon.svg'} width={20} height={20} alt='' />
                         </div>
                         <div className={styles.content}>
                             <h2>{codeData ? 'Update' : 'Add'} Store</h2>
@@ -137,7 +137,7 @@ function CodeEditor({codeData, handleDelete, closeModal, refreshUserCodes} : { c
                     <div className={styles.contentWrapper}>
                         <div className={styles.icon}>
                             {codeData ? 
-                                <Image src={storeLogo ? storeLogo : '/store_icon.svg'} width={20} height={20} alt='' />
+                                <Image className={styles.storeLogoImage} src={storeLogo ? storeLogo : '/store_icon.svg'} width={20} height={20} alt='' />
                             :
                                 <Image className={styles.codeIcon} src={'/code_icon.svg'} width={20} height={20} alt='' />
                             }
