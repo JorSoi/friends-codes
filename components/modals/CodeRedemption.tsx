@@ -30,6 +30,7 @@ function CodeRedemption({codeData, closeModal}: {codeData : any, closeModal : an
                     </div>
                     }
                     <p>{codeData.companies.name}</p>
+                    <p className={styles.subtitle}>Copy the referral link/code from {codeData.companies.name} below and redeem it on their website.</p>
                 </div>
                 <p className={styles.referralCode}>{codeData.referral_value}</p>
                 <button onClick={copyToClipboard} onPointerDown={copyToClipboard}>{hasCopied ? 'Copied!' : 'Copy Referral Code/Link'}</button>
