@@ -25,6 +25,7 @@ export async function generateMetadata () {
         siteName: 'FriendsCodes',
         type: 'website',
       },
+      metadataBase: new URL('https://friendscodes.de')
     }
   } else {
     return {
@@ -37,6 +38,7 @@ export async function generateMetadata () {
         siteName: 'FriendsCodes',
         type: 'website',
       },
+      metadataBase: new URL('https://friendscodes.de')
     }
   }
 }
