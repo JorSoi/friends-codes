@@ -26,7 +26,7 @@ export default function ProfileCodesContainer({user, externalVisitor} : {user : 
                 :
                     <div className={styles.externalVisitorTitle}>
                         <h1>{user?.user_name}'s referral codes 🎁 🎉</h1>
-                        <p>Redeem referral codes below so that you and jorsoi can both collect store benefits.</p>
+                        <p>Redeem referral codes below so that you and {user?.user_name} can both collect store benefits.</p>
                     </div>
              
                 }
